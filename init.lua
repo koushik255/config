@@ -8,8 +8,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.ttyfast = true
 
--- Disable LSP inlay hints
-vim.lsp.inlay_hint.enable(true)
+
 
 -- Keymaps
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
@@ -279,9 +278,8 @@ require('rust-tools').setup({
 	tools = {
 		autoSetHints = false,
 		inlay_hints = {
+            auto = false,
 			show_parameter_hints = false,
-			parameter_hints_prefix = "",
-			other_hints_prefix = "",
 		},
 	},
 	server = {
@@ -306,7 +304,12 @@ require('rust-tools').setup({
 			["rust-analyzer"] = {
 				cargo = { allFeatures = true },
 				checkOnSave = { enable = true },
-				inlayHints = { enable = false },
+				inlayHints = { 
+                    enable = false,
+                    chainingHints = { enable = false },
+                    typeHints = { enable = false },
+                    parameterHints = { enable = false }, 
+                },
 			},
 		},
 	},
@@ -389,6 +392,11 @@ lspconfig.clangd.setup({
 require("toodle")
 require("shik")
 
-vim.o.termguicolors = true
--- vim.cmd("colorscheme kanagawa")
+ vim.o.termguicolors = true
+-- -- vim.cmd("colorscheme kanagawa")
 vim.cmd [[ colorscheme murphy ]]
+--
+--
+
+
+
